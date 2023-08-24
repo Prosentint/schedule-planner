@@ -31,9 +31,12 @@ $(document).ready(function () {
     function hourChecker() {
         var currentTime = dayjs().hour();
 
+        // cycles through all of the time blocks
         $('.time-block').each(function () {
+            // gets the hour number in the id of currently cycled time block
             var numBlock = parseInt($(this).attr('id').split('-')[1]);
 
+            // checks wether currently cycled time block is future, past or present, and sets the classes appropriatly
             if (numBlock < currentTime) {
                 $(this).removeClass('future');
                 $(this).removeClass('present');
@@ -52,10 +55,9 @@ $(document).ready(function () {
 
     }
 
+    // runs hour checker program
     hourChecker();
-    console.log(dayjs().hour());
-    
-
+    // reruns hourchecker program every 15 seconds
     setInterval(hourChecker, 1000*15);
     
     // TODO: Add code to get any user input that was saved in localStorage and set
