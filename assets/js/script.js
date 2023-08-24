@@ -28,7 +28,35 @@ $(document).ready(function () {
     // past, present, and future classes? How can Day.js be used to get the
     // current hour in 24-hour time?
 
+    function hourChecker() {
+        var currentTime = dayjs().hour();
 
+        $('.time-block').each(function () {
+            var numBlock = parseInt($(this).attr('id').split('-')[1]);
+
+            if (numBlock < currentTime) {
+                $(this).removeClass('future');
+                $(this).removeClass('present');
+                $(this).addClass('past');
+            } else if (numBlock === currentTime) {
+                $(this).removeClass('past');
+                $(this).removeClass('future');
+                $(this).addClass('present');
+            } else {
+                $(this).removeClass('past');
+                $(this).removeClass('present');
+                $(this).addClass('future');
+                
+            }
+        })
+
+    }
+
+    hourChecker();
+    console.log(dayjs().hour());
+    
+
+    setInterval(hourChecker, 1000*15);
     
     // TODO: Add code to get any user input that was saved in localStorage and set
     // the values of the corresponding textarea elements. HINT: How can the id
